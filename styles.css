@@ -1,0 +1,62 @@
+html {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: larger;
+  font-weight: 300;
+}
+
+/* Position the image container relative to the document */
+.image-container {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Style for the clickable areas */
+.clickable-area {
+  position: absolute;
+  background-color: transparent;
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+#clickableImage {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+/* Style for the border when hovering over the clickable areas */
+.clickable-area:hover {
+  border: 2px solid red; /* Change border color on hover */
+}
+
+#popup img {
+  width: 20vh; /* Adjust width as needed */
+  height: auto; /* Adjust width as needed */
+}
+
+#popup video {
+  width: 20vh; /* Adjust width as needed */
+  height: auto; /* Adjust width as needed */
+}
+#popup {
+  display: none;
+  position: absolute;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  width: auto; /* Set the width */
+  height: auto; /* Set the height */
+}
+
+/* Font size for the popup message */
+#popupMessage {
+  font-size: 1vh; /* Set the font size */
+}
+
+/* Button size */
+#popup button {
+  width: auto;
+  height: auto; /* Set the height */
+  font-size: 1vh; /* Set the font size */
+  /* Add additional styling as needed */
+}

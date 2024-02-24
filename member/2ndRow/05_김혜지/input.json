@@ -1,10 +1,11 @@
 {
   "name": "김혜지",
-  "location_left": "1266",
+  "message": "안녕하세요 선생님, 혜지에요!",
+  "location_left": "1236",
   "location_top": "1107",
-  "location_width": "100",
+  "location_width": "130",
   "location_height": "130",
   "quote": "",
-  "video": "",
+  "videoPath": "./member/2ndRow/05_김혜지/video.mov",
   "image": ""
 }

@@ -68,7 +68,7 @@ function createClickableRegions(data) {
   region.style.width = widthPercentage + "%";
   region.style.height = heightPercentage + "%";
   region.style.position = "absolute";
-  region.style.backgroundColor = "rgba(0, 0, 0, 0.3)"; // Example background color
+  region.style.backgroundColor = "rgba(0, 0, 0, 0.2)"; // Example background color
   region.style.cursor = "pointer";
 
   // Add click event listener to the region
@@ -81,13 +81,58 @@ function createClickableRegions(data) {
     showPopup(name, message, videoPath, imagePath, event);
   });
 
+  // Add hover effect using event listeners
+
+  var textElement = document.createElement("span");
+  region.appendChild(textElement);
+
+  region.addEventListener("mouseenter", function (event) {
+    console.log("mouseenter");
+    region.style.border = "2px solid red";
+
+    textElement.textContent = name; // Text to display on hover
+    textElement.style.position = "absolute"; // Set position to absolute
+    textElement.style.top = "-2vh"; // Position above the div
+    textElement.style.left = "50%"; // Center horizontally
+    textElement.style.transform = "translateX(-50%)"; // Center horizontally
+    textElement.style.display = "inline-block"; // Display as inline block
+    textElement.style.whiteSpace = "nowrap"; // Prevent text wrapping
+    textElement.style.textAlign = "center"; // Center text horizontally
+    textElement.style.color = "white";
+  });
+
+  region.addEventListener("mouseleave", function (event) {
+    region.style.border = "none";
+    textElement.style.display = "none";
+  });
+
   // Append the region to the image container
   imageContainer.appendChild(region);
 }
 
 function generateImageRegions() {
   // Iterate through folders and load input.json files
-  var folder3rdNames = [
+  var folderNames = [
+    // 1st row
+    "./member/1stRow/01_이재서",
+    "./member/1stRow/02_권태환",
+    "./member/1stRow/03_남강현",
+    "./member/1stRow/04_백승호",
+    "./member/1stRow/05_이동형",
+    "./member/1stRow/06_김명재",
+    "./member/1stRow/07_김동은",
+    "./member/1stRow/08_박준혁",
+    // 2nd row
+    "./member/2ndRow/01_신수인",
+    "./member/2ndRow/02_김예진",
+    "./member/2ndRow/03_김세현",
+    "./member/2ndRow/04_이나경",
+    "./member/2ndRow/05_김혜지",
+    "./member/2ndRow/06_김예지",
+    "./member/2ndRow/07_장효은",
+    "./member/2ndRow/08_이재희",
+    "./member/2ndRow/09_정은혜",
+    // 3rd row
     "./member/3rdRow/01_김수정",
     "./member/3rdRow/02_이주현",
     "./member/3rdRow/03_김수빈",
@@ -103,7 +148,7 @@ function generateImageRegions() {
     "./member/3rdRow/13_서민석",
   ];
   // Add folder names here
-  folder3rdNames.forEach(function (folderName) {
+  folderNames.forEach(function (folderName) {
     var inputJSONFile = folderName + "/input.json";
     loadJSONFile(inputJSONFile, createClickableRegions);
   });
@@ -127,6 +172,7 @@ function showPopup(name, message, videoSrc, imageSrc, event) {
   mediaContainer.innerHTML = "";
 
   // Check if src is provided and create appropriate media element
+  console.log(videoSrc);
   if (videoSrc) {
     // If src is video
     var video = document.createElement("video");
