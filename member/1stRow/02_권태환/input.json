@@ -1,10 +1,10 @@
 {
-  "name": "김수정",
-  "location_left": "667",
-  "location_top": "861",
-  "location_width": "100",
-  "location_height": "100",
-  "quote": "",
-  "video": "",
-  "image": ""
+  "name": "권태환",
+  "message": "안녕하세요 선생님 태환이에요!",
+  "location_left": "745",
+  "location_top": "1388",
+  "location_width": "150",
+  "location_height": "200",
+  "quote": "video",
+  "videoPath": "./member/1stRow/02_권태환/video.mp4"
 }
