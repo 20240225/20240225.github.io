@@ -18,34 +18,38 @@ function generateRegionId(index) {
 
 // Function to load JSON data from a file
 function loadJSONFile(filePath, callback) {
-  // var xhr = new XMLHttpRequest();
-  // xhr.overrideMimeType("application/json");
-  // xhr.open("GET", filePath, true);
-  // xhr.onreadystatechange = function () {
-  //   if (xhr.readyState === 4 && xhr.status == "200") {
-  //     callback(JSON.parse(xhr.responseText));
-  //   }
-  //   console.log("test");
-  // };
-  // console.log("test");
-  console.log(filePath);
-  fetch(filePath)
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-      return res.json();
-    })
-    .then((data) => console.log(data))
-    .catch((error) => console.error("Unable to fetch data:", error));
+  var xhr = new XMLHttpRequest();
+  xhr.overrideMimeType("application/json");
+  xhr.open("GET", filePath, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status == "200") {
+      callback(JSON.parse(xhr.responseText));
+    }
+  };
+  xhr.send(null);
+  // console.log(filePath);
+  // fetch(filePath)
+  //   .then((res) => {
+  //     if (!res.ok) {
+  //       throw new Error(`HTTP error! Status: ${res.status}`);
+  //     }
+  //     return res.json();
+  //   })
+  //   .then((data) => console.log(data))
+  //   .catch((error) => console.error("Unable to fetch data:", error));
 }
 // Function to create clickable regions based on JSON data
 function createClickableRegions(data) {
   // Extract location information from JSON data
+  // parse, if doesn't exist, just return undefined
   var left = parseFloat(data.location_left);
   var top = parseFloat(data.location_top);
   var width = parseFloat(data.location_width);
   var height = parseFloat(data.location_height);
+  var imagePath = data.imagePath;
+  var videoPath = data.videoPath;
+  var name = data.name;
+  var message = data.message;
 
   // Calculate position and size of the region relative to the image dimensions
   var imageWidth = document.getElementById("clickableImage").naturalWidth;
@@ -68,86 +72,75 @@ function createClickableRegions(data) {
   region.style.cursor = "pointer";
 
   // Add click event listener to the region
-  region.addEventListener("click", function () {
-    // Handle click event (e.g., show popup, navigate to another page, etc.)
-    console.log("Region clicked!");
+  // region.addEventListener("click", function () {
+  //   // Handle click event (e.g., show popup, navigate to another page, etc.)
+  //   console.log("Region clicked!");
+  // });
+
+  region.addEventListener("click", function (event) {
+    showPopup(name, message, videoPath, imagePath, event);
   });
 
   // Append the region to the image container
-  document.querySelector(".image-container").appendChild(region);
+  imageContainer.appendChild(region);
 }
 
 function generateImageRegions() {
   // Iterate through folders and load input.json files
-  var folderNames = ["."]; // Add folder names here
-  folderNames.forEach(function (folderName) {
+  var folder3rdNames = [
+    "./member/3rdRow/01_김수정",
+    "./member/3rdRow/02_이주현",
+    "./member/3rdRow/03_김수빈",
+    "./member/3rdRow/04_손유진",
+    "./member/3rdRow/05_신소영",
+    "./member/3rdRow/06_송혜린",
+    "./member/3rdRow/07_강필구",
+    "./member/3rdRow/08_김태원",
+    "./member/3rdRow/09_안준성",
+    "./member/3rdRow/10_이준호",
+    "./member/3rdRow/11_김재영",
+    "./member/3rdRow/12_강동욱",
+    "./member/3rdRow/13_서민석",
+  ];
+  // Add folder names here
+  folder3rdNames.forEach(function (folderName) {
     var inputJSONFile = folderName + "/input.json";
     loadJSONFile(inputJSONFile, createClickableRegions);
   });
 }
 
-// Function to generate image regions
-// function generateImageRegions() {
-//   for (let i = 0; i < numberOfRegions; i++) {
-//     // Create a div element for the region
-//     const region = document.createElement("div");
-
-//     // Set the unique id for the region
-//     region.id = generateRegionId(i);
-
-//     // Calculate the position and size of the region (random for demonstration)
-//     const left = Math.random() * imageWidth;
-//     const top = Math.random() * imageHeight;
-//     const width = Math.random() * 100; // Random width between 0 and 100
-//     const height = Math.random() * 100; // Random height between 0 and 100
-
-//     // Set the position and size of the region
-//     region.style.left = left + "px";
-//     region.style.top = top + "px";
-//     region.style.width = width + "px";
-//     region.style.height = height + "px";
-
-//     // Add class to style the region
-//     region.classList.add("clickable-area");
-
-//     // Add click event listener to show popup
-//     region.addEventListener("click", function (event) {
-//       showPopup("Clicked on Region " + i, "your-image.jpg", event);
-//     });
-
-//     // Append the region to the image container
-//     imageContainer.appendChild(region);
-//   }
-// }
-
 // Function to show the popup with custom message and position it next to the clicked point
-function showPopup(message, src, event) {
+function showPopup(name, message, videoSrc, imageSrc, event) {
   var popup = document.getElementById("popup");
+  var popupName = document.getElementById("popupName");
   var popupMessage = document.getElementById("popupMessage");
   var mediaContainer = document.getElementById("mediaContainer");
 
   // Set popup message
+  if (name) {
+    popupName.textContent = name;
+  }
+
   popupMessage.textContent = message;
 
   // Clear previous content from media container
   mediaContainer.innerHTML = "";
 
   // Check if src is provided and create appropriate media element
-  if (src) {
-    if (src.endsWith(".mp4")) {
-      // If src is video
-      var video = document.createElement("video");
-      video.src = src;
-      video.controls = true;
-      video.style.maxWidth = "100%";
-      mediaContainer.appendChild(video);
-    } else {
-      // Assume src is image
-      var image = document.createElement("img");
-      image.src = src;
-      image.style.maxWidth = "100%";
-      mediaContainer.appendChild(image);
-    }
+  if (videoSrc) {
+    // If src is video
+    var video = document.createElement("video");
+    video.src = videoSrc;
+    video.controls = true;
+    video.style.maxWidth = "100%";
+    mediaContainer.appendChild(video);
+  }
+  if (imageSrc) {
+    // Assume src is image
+    var image = document.createElement("img");
+    image.src = imageSrc;
+    image.style.maxWidth = "100%";
+    mediaContainer.appendChild(image);
   }
 
   // Calculate the position of the popup relative to the clicked point
