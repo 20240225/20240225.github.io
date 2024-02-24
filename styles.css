@@ -35,7 +35,8 @@ html {
 }
 
 #popup video {
-  width: 20vh; /* Adjust width as needed */
+  max-width: 20vh; /* Adjust width as needed */
+  width: auto;
   height: auto; /* Adjust width as needed */
 }
 #popup {
@@ -44,7 +45,7 @@ html {
   background-color: white;
   padding: 20px;
   border: 1px solid black;
-  width: auto; /* Set the width */
+  width: 30ch; /* Set the width */
   height: auto; /* Set the height */
 }
 

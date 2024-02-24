@@ -87,7 +87,6 @@ function createClickableRegions(data) {
   region.appendChild(textElement);
 
   region.addEventListener("mouseenter", function (event) {
-    console.log("mouseenter");
     region.style.border = "2px solid red";
 
     textElement.textContent = name; // Text to display on hover
