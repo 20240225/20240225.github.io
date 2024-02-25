@@ -8,12 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2013년 현대중학교 2학년 6반</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet" />
   </head>
   <body>
     <!-- Image container -->
-    <div class="image-container" style="position: relative">
-      <!-- Image with dynamically generated regions -->
-      <img id="clickableImage" src="./clsPic.jpg" alt="Clickable Image" />
+    <div class="container-fluid themed-container text-center">
+      <h2>2013년 8월 29일 현대중학교 수학여행</h2>
+      <h3>
+        <em>*얼굴을 클릭해보세요! 모바일 페이지는 잘 안 맞을 수 있음!*</em>
+      </h3>
+      <div class="image-container" style="position: relative">
+        <!-- Image with dynamically generated regions -->
+        <img id="clickableImage" src="./clsPic.jpg" alt="Clickable Image" />
+      </div>
     </div>
 
     <!-- Popup message with image or video -->
@@ -34,5 +41,65 @@
     </div>
 
     <script src="script.js"></script>
+    <br />
+    <br />
+
+    <div class="container-fluid themed-container text-center">
+      <h2>그리고, 11년 뒤 2024/02/25 울산에서!</h2>
+    </div>
+    <br />
+    <br />
+    <div class="container-fluid themed-container text-center">
+      <div class="row">
+        <div class="col-4">
+          <img
+            id="clickableImage"
+            style="transform: rotate(5deg)"
+            src="./now2.jpg"
+            alt="Clickable Image"
+          />
+          <img
+            id="clickableImage"
+            style="transform: rotate(10deg)"
+            src="./now3.jpg"
+            alt="Clickable Image"
+          />
+        </div>
+        <div class="col-4">
+          <!-- Image with dynamically generated regions -->
+          <img id="clickableImage" src="./now.jpg" alt="Clickable Image" />
+        </div>
+        <div class="col-4">
+          <img
+            id="clickableImage"
+            style="transform: rotate(-3deg)"
+            src="./now5.jpg"
+            alt="Clickable Image"
+          />
+          <img id="clickableImage" src="./now4.jpg" alt="Clickable Image" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <img
+            id="clickableImage"
+            style="transform: rotate(4deg)"
+            src="./now6.jpg"
+            alt="Clickable Image"
+          />
+        </div>
+        <div class="col-4">
+          <img id="clickableImage" src="./now7.jpg" alt="Clickable Image" />
+        </div>
+        <div class="col-4">
+          <img
+            id="clickableImage"
+            style="transform: rotate(6deg)"
+            src="./now8.jpg"
+            alt="Clickable Image"
+          />
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,10 +1,11 @@
 {
   "name": "김태원",
+  "message": "선생님 저 태원이에요!",
   "location_left": "2107",
   "location_top": "851",
   "location_width": "120",
   "location_height": "110",
   "quote": "",
-  "video": "",
+  "videoPath": "./member/3rdRow/08_김태원/video.mp4",
   "image": ""
 }

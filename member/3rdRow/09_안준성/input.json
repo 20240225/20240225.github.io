@@ -1,10 +1,11 @@
 {
   "name": "안준성",
+  "message": "선생님 저 준성이에요!",
   "location_left": "2276",
   "location_top": "789",
   "location_width": "110",
   "location_height": "100",
   "quote": "",
-  "video": "",
+  "videoPath": "./member/3rdRow/09_안준성/video.mp4",
   "image": ""
 }
